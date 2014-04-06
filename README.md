@@ -18,7 +18,7 @@ Once you have built it, you can reference it from your Maven project with the fo
 <dependency>
   <groupId>com.robertin</groupId>
   <artifactId>yts-client</artifactId>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
