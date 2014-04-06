@@ -6,14 +6,16 @@ Java library to consume the [YTS REST api][1] built on top of [Square's Retrofit
 
 Installation
 --
-This library is build with [Maven][3]. Gradle support will come later on.
+This library is built with [Maven][3]. Gradle support will come later on.
+
 ```sh
 git clone https://github.com/robertoestivill/yts-client.git yts-client
 cd yts-client
 mvn clean install
 ```
 
-Once you have built it, you can reference it from your Maven project with the following dependency details
+Once you have built it and install it to your local repository, you can reference it from your Maven project with the following dependency details
+
 ```xml
 <dependency>
   <groupId>com.robertin</groupId>
@@ -65,6 +67,7 @@ Once you have a ```YtsClient``` instance, you can call any of the following meth
 
 Integration Tests
 --
+
 The ```com.ytsclient.YtsClientTest``` class has an integration test for every method in main interface. 
 
 This tests were used as a tool to validate the well functioning of the library. However, because we are hitting a production API, all the tests are ```@Ignore```'d. 
