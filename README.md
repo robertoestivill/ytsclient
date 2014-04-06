@@ -3,7 +3,7 @@ YTS Api Client
 
 Java library to consume the [YTS REST api][1] built on top of [Square's Retrofit][2].
 
-***
+
 Installation
 --
 This library is build with [Maven][3]. Gradle support will come later on.
@@ -23,7 +23,6 @@ Once you have built it, you can reference it from your Maven project with the fo
 ```
 
 
-***
 Usage
 --
 The main interface of the library is ```com.ytsclient.YtsClient```. 
@@ -40,7 +39,7 @@ You can also call the overloaded method to pass in the ```LogLevel```
 YtsClient client = YtsClientFactory.create( LogLevel.FULL );
 ```
 
-***
+
 Methods
 --
 Once you have a ```YtsClient``` instance, you can call any of the following methods:
@@ -63,7 +62,7 @@ Once you have a ```YtsClient``` instance, you can call any of the following meth
 * ```voteRequest```
 
 
-***
+
 Integration Tests
 --
 The ```com.ytsclient.YtsClientTest``` class has an integration test for every method in main interface. 
@@ -73,7 +72,7 @@ This tests were used as a tool to validate the well functioning of the library. 
 Please uncomment whatever test you might need.
 
 
-***
+
 License
 ----
 
