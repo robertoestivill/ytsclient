@@ -3,13 +3,16 @@ YTS Api Client
 
 Java library to consume the [YTS REST api][1] built on top of [Square's Retrofit][2].
 
-
-Installation
---
-This library is built with [Maven][3]. Gradle support will come later on.
-
+Get the code
+-- 
 ```sh
 git clone https://github.com/robertoestivill/yts-client.git yts-client
+```
+
+Build with Maven 
+--
+
+```sh
 cd yts-client
 mvn clean install
 ```
@@ -20,9 +23,26 @@ Once you have built it and install it to your local repository, you can referenc
 <dependency>
   <groupId>com.robertin</groupId>
   <artifactId>yts-client</artifactId>
-  <version>0.1.0</version>
+  <version>${LATEST_VERSION}</version>
 </dependency>
 ```
+
+Build with Gradle
+--
+
+```sh
+cd yts-client
+./gradlew clean install
+```
+
+Once you have built it and install it to your local repository, you can reference it from your Gradle project with the following dependency details
+
+```json
+dependencies {
+    compile group: 'com.robertin', name: 'yts-client', version: '${LATEST_VERSION}'
+}
+```
+
 
 
 Usage
