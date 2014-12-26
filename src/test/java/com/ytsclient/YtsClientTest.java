@@ -16,17 +16,12 @@
 
 package com.ytsclient;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import com.ytsclient.model.MovieComment;
 import com.ytsclient.model.MovieDetails;
-import com.ytsclient.model.Movies;
-import com.ytsclient.model.MovieRequests;
 import com.ytsclient.model.MovieRequestPage;
+import com.ytsclient.model.MovieRequests;
 import com.ytsclient.model.MovieUpcoming;
+import com.ytsclient.model.Movies;
 import com.ytsclient.model.User;
 import com.ytsclient.model.YtsLogin;
 import com.ytsclient.model.YtsResponse;
@@ -40,19 +35,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import retrofit.RestAdapter;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 public class YtsClientTest {
 
-    private YtsClient service;
+    private YtsClient client;
 
+    @Ignore
     @Before
     public void setUpAdapter() {
-        service = YtsClientFactory.create();
+        client = new YtsClient
+                .Builder()
+                .log(RestAdapter.LogLevel.FULL)
+                .build();
     }
 
     @Ignore
     @Test
     public void testUpcomingMovies() {
-        List<MovieUpcoming> movies = service.getUpcomingMovies();
+        List<MovieUpcoming> movies = client.getUpcomingMovies();
         assertNotNull(movies);
         assertFalse(movies.isEmpty());
     }
@@ -60,7 +66,7 @@ public class YtsClientTest {
     @Ignore
     @Test
     public void testMovieList() {
-        Movies list = service.getMovies(null);
+        Movies list = client.getMovies(null);
         assertNotNull(list);
         assertNotNull(list.count);
         assertTrue(list.count > 0);
@@ -71,14 +77,14 @@ public class YtsClientTest {
     @Ignore
     @Test
     public void testMovieDetails() {
-        MovieDetails details = service.getMovieDetails(1234);
+        MovieDetails details = client.getMovieDetails(1234);
         assertNotNull(details);
     }
 
     @Ignore
     @Test
     public void testMovieComments() {
-        List<MovieComment> comments = service.getMovieComments(1234);
+        List<MovieComment> comments = client.getMovieComments(1234);
         assertNotNull(comments);
         assertFalse(comments.isEmpty());
     }
@@ -86,28 +92,28 @@ public class YtsClientTest {
     @Ignore
     @Test
     public void testUserDetails() {
-        User details = service.getUserDetails(1234);
+        User details = client.getUserDetails(1234);
         assertNotNull(details);
     }
 
     @Ignore
     @Test
     public void testRegister() {
-        YtsResponse response = service.register("USERNAME", "PASSWORD", "EMAIL");
+        YtsResponse response = client.register("USERNAME", "PASSWORD", "EMAIL");
         assertYtsResponse(response);
     }
 
     @Ignore
     @Test
     public void testRegisterConfirmation() {
-        YtsResponse response = service.registerConfirmation("CONFIRMATION CODE");
+        YtsResponse response = client.registerConfirmation("CONFIRMATION CODE");
         assertYtsResponse(response);
     }
 
     @Ignore
     @Test
     public void testLogin() {
-        YtsLogin login = service.login("USER NAME", "PASSWORD");
+        YtsLogin login = client.login("USER NAME", "PASSWORD");
         assertNotNull(login);
         assertNotNull(login.hash);
         System.out.println(login.hash);
@@ -116,35 +122,35 @@ public class YtsClientTest {
     @Ignore
     @Test
     public void testForgotPassword() {
-        YtsResponse response = service.forgotPassword("EMAIL ADDRESS");
+        YtsResponse response = client.forgotPassword("EMAIL ADDRESS");
         assertYtsResponse(response);
     }
 
     @Ignore
     @Test
     public void testUserProfile() {
-        User user = service.getUserProfile("");
+        User user = client.getUserProfile("");
         assertNotNull(user);
     }
 
     @Ignore
     @Test
     public void testResetPassword() {
-        YtsResponse response = service.resetPassword("THE EMAIL CODE", "NEW PASSWORD");
+        YtsResponse response = client.resetPassword("THE EMAIL CODE", "NEW PASSWORD");
         assertYtsResponse(response);
     }
 
     @Ignore
     @Test
     public void testPostComment() {
-        YtsResponse response = service.postComment("USER HASH", "COMMENT TEXT", 1234, null);
+        YtsResponse response = client.postComment("USER HASH", "COMMENT TEXT", 1234, null);
         assertYtsResponse(response);
     }
 
     @Ignore
     @Test
     public void testMovieRequestList() {
-        MovieRequests list = service.getMovieRequests(MovieRequestPage.ACCEPTED, null);
+        MovieRequests list = client.getMovieRequests(MovieRequestPage.ACCEPTED, null);
         assertNotNull(list);
         assertNotNull(list.count);
         assertTrue(list.count > 0);
@@ -155,14 +161,14 @@ public class YtsClientTest {
     @Ignore
     @Test
     public void testMakeMovieRequest() {
-        YtsResponse response = service.requestMovie("USER HASH", "MOVIE NAME / IMDB LINK");
+        YtsResponse response = client.requestMovie("USER HASH", "MOVIE NAME / IMDB LINK");
         assertYtsResponse(response);
     }
 
     @Ignore
     @Test
     public void testVoteRequest() {
-        YtsResponse response = service.voteRequest("USER HASH", 1234);
+        YtsResponse response = client.voteRequest("USER HASH", 1234);
         assertYtsResponse(response);
     }
 
@@ -170,15 +176,15 @@ public class YtsClientTest {
     @Test
     public void testEditProfile() {
         Map<String, Object> optionals = new HashMap<String, Object>();
-        YtsResponse response = service.editProfile("USER HASH", optionals);
+        YtsResponse response = client.editProfile("USER HASH", optionals);
         assertYtsResponse(response);
     }
 
     /**
      * Convenient method to assert {@link com.ytsclient.model.YtsResponse}
      * object.
-     * <p>
-     * 
+     * <p/>
+     *
      * @param response the response to be asserted
      */
     private static void assertYtsResponse(YtsResponse response) {

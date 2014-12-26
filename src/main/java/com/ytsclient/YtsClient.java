@@ -16,17 +16,24 @@
 
 package com.ytsclient;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ytsclient.model.MovieComment;
 import com.ytsclient.model.MovieDetails;
-import com.ytsclient.model.Movies;
 import com.ytsclient.model.MovieRequestPage;
 import com.ytsclient.model.MovieRequests;
 import com.ytsclient.model.MovieUpcoming;
+import com.ytsclient.model.Movies;
 import com.ytsclient.model.User;
 import com.ytsclient.model.YtsLogin;
 import com.ytsclient.model.YtsResponse;
 
+import java.util.List;
+import java.util.Map;
+
 import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.converter.GsonConverter;
 import retrofit.http.Field;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
@@ -35,14 +42,11 @@ import retrofit.http.POST;
 import retrofit.http.Query;
 import retrofit.http.QueryMap;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Interface definition of the Yts API.
- * <p>
+ * <p/>
  * This interface defines each of the endpoints available on the Yts API.
- * 
+ *
  * @author robertoestivill@gmail.com
  */
 public interface YtsClient {
@@ -229,4 +233,42 @@ public interface YtsClient {
             @FieldMap Map<String, Object> optionals,
             Callback<YtsResponse> cb);
 
+    /**
+     * Builder class. <br/>
+     */
+    public static class Builder {
+        private RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.NONE;
+        private String apiUrl = "http://yts.re";
+
+
+        public Builder log(RestAdapter.LogLevel log) {
+            if (logLevel == null) {
+                throw new IllegalStateException("LogLevel can not be null");
+            }
+            logLevel = log;
+            return this;
+        }
+
+        public Builder url(String url) {
+            if (url == null) {
+                throw new IllegalStateException("Url can not be null");
+            }
+            apiUrl = url;
+            return this;
+        }
+
+        public YtsClient build() {
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .create();
+
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint(apiUrl)
+                    .setLogLevel(logLevel)
+                    .setConverter(new GsonConverter(gson))
+                    .build();
+
+            return restAdapter.create(YtsClient.class);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 YTS Api Client
 =========
 
-Java library to consume the [YTS REST api][1] built on top of [Square's Retrofit][2].
+Java library to consume the [YTS REST api][1].
 
 Get the code
 -- 
@@ -49,16 +49,19 @@ Usage
 --
 The main interface of the library is ```com.ytsclient.YtsClient```. 
 
-Get a configured instance of the ```YtsClient``` by calling ```YtsClientFactory.create()``` method.
+Get a configured instance of the ```YtsClient``` by using the ```YtsClient.Builder()``` class.
 
 ```java
-YtsClient client = YtsClientFactory.create();
+YtsClient client = new YtsClient.Builder().build();
 ```
 
-You can also call the overloaded method to pass in the ```LogLevel```
+You can also pass the ```LogLevel``` or a custom url
 
 ```java
-YtsClient client = YtsClientFactory.create( LogLevel.FULL );
+YtsClient client = new YtsClient.Builder()
+            .log( LogLevel.FULL )
+            .url( "http://yts.re" )
+            .build();
 ```
 
 
@@ -114,6 +117,4 @@ License
     limitations under the License.
 
 [1]:http://yts.re/api
-[2]:https://github.com/square/retrofit
-[3]:http://maven.apache.org
 [git-repo-url]:http://github.com/robertoestivill/yts-client
