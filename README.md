@@ -3,6 +3,8 @@ YTS Api Client
 
 Java library to consume the [YTS REST api][1].
 
+[![Build Status](https://snap-ci.com/robertoestivill/YTS-Client/branch/master/build_image)](https://snap-ci.com/robertoestivill/YTS-Client/branch/master)
+
 Get the code
 -- 
 ```sh
