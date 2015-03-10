@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 0.2.0 *(2013-05-13)*
+Version 0.2.0 *(2015-03-xx)*
 ----------------------------
 
  * Refactor to support YTS Rest update to v2. This release contains **breaking changes**.
