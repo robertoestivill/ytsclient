@@ -18,29 +18,14 @@ package com.ytsclient;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ytsclient.model.MovieComment;
-import com.ytsclient.model.MovieDetails;
-import com.ytsclient.model.MovieRequestPage;
-import com.ytsclient.model.MovieRequests;
-import com.ytsclient.model.MovieUpcoming;
-import com.ytsclient.model.Movies;
-import com.ytsclient.model.User;
-import com.ytsclient.model.YtsLogin;
-import com.ytsclient.model.YtsResponse;
+import com.ytsclient.module.BookmarkModule;
+import com.ytsclient.module.CommentModule;
+import com.ytsclient.module.MovieModule;
+import com.ytsclient.module.RequestModule;
+import com.ytsclient.module.UserModule;
 
-import java.util.List;
-import java.util.Map;
-
-import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
-import retrofit.http.Field;
-import retrofit.http.FieldMap;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Query;
-import retrofit.http.QueryMap;
 
 /**
  * Interface definition of the Yts API.
@@ -49,197 +34,64 @@ import retrofit.http.QueryMap;
  *
  * @author robertoestivill@gmail.com
  */
-public interface YtsClient {
+public class YtsClient {
 
-    @GET("/api/upcoming.json")
-    public List<MovieUpcoming> getUpcomingMovies();
+    private BookmarkModule bookmarkModule;
+    private CommentModule commentModule;
+    private MovieModule movieModule;
+    private RequestModule requestModule;
+    private UserModule userModule;
 
-    @GET("/api/upcoming.json")
-    public void getUpcomingMovies(
-            Callback<List<MovieUpcoming>> cb);
+    /**
+     * Avoid instantiation. Use YtsClient.Builder
+     */
+    private YtsClient() {
+    }
 
-    @GET("/api/list.json")
-    public Movies getMovies(
-            @QueryMap Map<String, Object> options);
+    public BookmarkModule bookmarks() {
+        if (bookmarkModule == null) {
+            throw new IllegalStateException("Bookmarks module not loaded. Call YtsClient.Builder.withBookmarks() ");
+        }
+        return bookmarkModule;
+    }
 
-    @GET("/api/list.json")
-    public void getMovies(
-            @QueryMap Map<String, Object> options,
-            Callback<Movies> cb);
+    public CommentModule comments() {
+        if (commentModule == null) {
+            throw new IllegalStateException("Comments module not loaded. Call YtsClient.Builder.withComments() ");
+        }
+        return commentModule;
+    }
 
-    @GET("/api/movie.json")
-    public MovieDetails getMovieDetails(
-            @Query("id") Integer movieId);
+    public MovieModule movies() {
+        if (movieModule == null) {
+            throw new IllegalStateException("Movies module not loaded. Call YtsClient.Builder.withMovies() ");
+        }
+        return movieModule;
+    }
 
-    @GET("/api/movie.json")
-    public void getMovieDetails(
-            @Query("id") Integer movieId,
-            Callback<MovieDetails> cb);
+    public RequestModule requests() {
+        if (requestModule == null) {
+            throw new IllegalStateException("Requests module not loaded. Call YtsClient.Builder.withRequests() ");
+        }
+        return requestModule;
+    }
 
-    @GET("/api/comments.json")
-    public List<MovieComment> getMovieComments(
-            @Query("movieid") Integer movieId);
-
-    @GET("/api/comments.json")
-    public void getMovieComments(
-            @Query("movieid") Integer movieId,
-            Callback<List<MovieComment>> cb);
-
-    @GET("/api/user.json")
-    public User getUserDetails(
-            @Query("id") Integer id);
-
-    @GET("/api/user.json")
-    public void getUserDetails(
-            @Query("id") Integer id,
-            Callback<User> cb);
-
-    @FormUrlEncoded
-    @POST("/api/register.json")
-    public YtsResponse register(
-            @Field("username") String username,
-            @Field("password") String password,
-            @Field("email") String email);
-
-    @FormUrlEncoded
-    @POST("/api/register.json")
-    public void register(
-            @Field("username") String username,
-            @Field("password") String password,
-            @Field("email") String email,
-            Callback<YtsResponse> cb);
-
-    @FormUrlEncoded
-    @POST("/api/registerconfirm.json")
-    public YtsResponse registerConfirmation(
-            @Field("code") String code);
-
-    @FormUrlEncoded
-    @POST("/api/registerconfirm.json")
-    public void registerConfirmation(
-            @Field("code") String code,
-            Callback<YtsResponse> cb);
-
-    @FormUrlEncoded
-    @POST("/api/login.json")
-    public YtsLogin login(
-            @Field("username") String username,
-            @Field("password") String password);
-
-    @FormUrlEncoded
-    @POST("/api/login.json")
-    public void login(
-            @Field("username") String username,
-            @Field("password") String password,
-            Callback<YtsLogin> cb);
-
-    @FormUrlEncoded
-    @POST("/api/sendresetpass.json")
-    public YtsResponse forgotPassword(
-            @Field("email") String email);
-
-    @FormUrlEncoded
-    @POST("/api/sendresetpass.json")
-    public void forgotPassword(
-            @Field("email") String email,
-            Callback<YtsResponse> cb);
-
-    @GET("/api/profile.json")
-    public User getUserProfile(
-            @Query("hash") String hash);
-
-    @GET("/api/profile.json")
-    public void getUserProfile(
-            @Query("hash") String hash,
-            Callback<User> cb);
-
-    @FormUrlEncoded
-    @POST("/api/resetpassconfirm")
-    public YtsResponse resetPassword(
-            @Field("code") String code,
-            @Field("newpassword") String newPassword);
-
-    @FormUrlEncoded
-    @POST("/api/resetpassconfirm")
-    public void resetPassword(
-            @Field("code") String code,
-            @Field("newpassword") String newPassword,
-            Callback<YtsResponse> cb);
-
-    @FormUrlEncoded
-    @POST("/api/commentpost.json")
-    public YtsResponse postComment(
-            @Field("hash") String hash,
-            @Field("text") String comment,
-            @Field("movieid") Integer movieId,
-            @FieldMap Map<String, Object> optionals);
-
-    @FormUrlEncoded
-    @POST("/api/commentpost.json")
-    public void postComment(
-            @Field("hash") String hash,
-            @Field("text") String comment,
-            @Field("movieid") Integer movieId,
-            @FieldMap Map<String, Object> optionals,
-            Callback<YtsResponse> cb);
-
-    @GET("/api/requests.json")
-    public MovieRequests getMovieRequests(
-            @Query("page") MovieRequestPage page,
-            @QueryMap Map<String, Object> optionals);
-
-    @GET("/api/requests.json")
-    public void getMovieRequests(
-            @Query("page") MovieRequestPage page,
-            @QueryMap Map<String, Object> optionals,
-            Callback<MovieRequests> cb);
-
-    @FormUrlEncoded
-    @POST("/api/makerequest.json")
-    public YtsResponse requestMovie(
-            @Field("hash") String hash,
-            @Field("request") String request);
-
-    @FormUrlEncoded
-    @POST("/api/makerequest.json")
-    public void requestMovie(
-            @Field("hash") String hash,
-            @Field("request") String request,
-            Callback<YtsResponse> cb);
-
-    @FormUrlEncoded
-    @POST("/api/vote.json")
-    public YtsResponse voteRequest(
-            @Field("hash") String hash,
-            @Field("requestid") Integer requestId);
-
-    @FormUrlEncoded
-    @POST("/api/vote.json")
-    public void voteRequest(
-            @Field("hash") String hash,
-            @Field("requestid") Integer requestId,
-            Callback<YtsResponse> cb);
-
-    @FormUrlEncoded
-    @POST("/api/editprofile.json")
-    public YtsResponse editProfile(
-            @Field("hash") String hash,
-            @FieldMap Map<String, Object> optionals);
-
-    @FormUrlEncoded
-    @POST("/api/editprofile.json")
-    public void editProfile(
-            @Field("hash") String hash,
-            @FieldMap Map<String, Object> optionals,
-            Callback<YtsResponse> cb);
+    public UserModule user() {
+        if (userModule == null) {
+            throw new IllegalStateException("User module not loaded. Call YtsClient.Builder.withUser() ");
+        }
+        return userModule;
+    }
 
     /**
      * Builder class. <br/>
      */
     public static class Builder {
         private RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.NONE;
-        private String apiUrl = "http://yts.re";
+        private String apiUrl = "http://yts.re/api/v2";
 
+        private boolean isCustomModulesInitialization = false;
+        private boolean[] isModuleEnabled = new boolean[5];
 
         public Builder log(RestAdapter.LogLevel log) {
             if (logLevel == null) {
@@ -257,6 +109,36 @@ public interface YtsClient {
             return this;
         }
 
+        public Builder withBookmarks() {
+            isCustomModulesInitialization = true;
+            isModuleEnabled[0] = true;
+            return this;
+        }
+
+        public Builder withComments() {
+            isCustomModulesInitialization = true;
+            isModuleEnabled[1] = true;
+            return this;
+        }
+
+        public Builder withMovies() {
+            isCustomModulesInitialization = true;
+            isModuleEnabled[2] = true;
+            return this;
+        }
+
+        public Builder withRequests() {
+            isCustomModulesInitialization = true;
+            isModuleEnabled[3] = true;
+            return this;
+        }
+
+        public Builder withUser() {
+            isCustomModulesInitialization = true;
+            isModuleEnabled[4] = true;
+            return this;
+        }
+
         public YtsClient build() {
             Gson gson = new GsonBuilder()
                     .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -268,7 +150,23 @@ public interface YtsClient {
                     .setConverter(new GsonConverter(gson))
                     .build();
 
-            return restAdapter.create(YtsClient.class);
+            YtsClient client = new YtsClient();
+            if (!isCustomModulesInitialization || isModuleEnabled[0]) {
+                client.bookmarkModule = restAdapter.create(BookmarkModule.class);
+            }
+            if (!isCustomModulesInitialization || isModuleEnabled[1]) {
+                client.commentModule = restAdapter.create(CommentModule.class);
+            }
+            if (!isCustomModulesInitialization || isModuleEnabled[2]) {
+                client.movieModule = restAdapter.create(MovieModule.class);
+            }
+            if (!isCustomModulesInitialization || isModuleEnabled[3]) {
+                client.requestModule = restAdapter.create(RequestModule.class);
+            }
+            if (!isCustomModulesInitialization || isModuleEnabled[4]) {
+                client.userModule = restAdapter.create(UserModule.class);
+            }
+            return client;
         }
     }
 }

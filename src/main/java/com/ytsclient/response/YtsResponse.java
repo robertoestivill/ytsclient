@@ -13,21 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ytsclient.model;
+
+package com.ytsclient.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MovieActor {
+public class YtsResponse<T> {
 
-    @SerializedName("ActorName")
-    public String name;
+    @SerializedName("@meta")
+    public YtsMetadata metadata;
 
-    @SerializedName("ActorImdbCode")
-    public String imdbCode;
+    @SerializedName("status")
+    public YtsStatus status;
 
-    @SerializedName("ActorImdbLink")
-    public String imdbLink;
+    @SerializedName("status_message")
+    public String statusMessage;
 
-    @SerializedName("CharacterName")
-    public String role;
+    @SerializedName("data")
+    public T data;
 }

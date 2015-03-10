@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ytsclient.model;
+
+package com.ytsclient.response;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public enum YtsStatus {
 
-public class Movies {
+    @SerializedName("error")
+    ERROR,
 
-    @SerializedName("MovieCount")
-    public Integer count;
-    
-    @SerializedName("MovieList")
-    public List<Movie> movies;
+    @SerializedName("ok")
+    OK
 }

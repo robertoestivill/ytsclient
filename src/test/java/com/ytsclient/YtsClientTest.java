@@ -1,195 +1,200 @@
-/*
- * Copyright (C) 2014 Roberto Estivill
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ytsclient;
 
-import com.ytsclient.model.MovieComment;
-import com.ytsclient.model.MovieDetails;
-import com.ytsclient.model.MovieRequestPage;
-import com.ytsclient.model.MovieRequests;
-import com.ytsclient.model.MovieUpcoming;
-import com.ytsclient.model.Movies;
-import com.ytsclient.model.User;
-import com.ytsclient.model.YtsLogin;
-import com.ytsclient.model.YtsResponse;
-import com.ytsclient.model.YtsStatus;
-
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import retrofit.RestAdapter;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+/**
+ * Created by robertoestivill@gmail.com.
+ */
 public class YtsClientTest {
 
     private YtsClient client;
 
-    @Ignore
-    @Before
-    public void setUpAdapter() {
+    /**
+     * Test to verify the available module instances when initialized by default.
+     * <br/>
+     */
+    @Test
+    public void allModulesByDefault() {
         client = new YtsClient
                 .Builder()
-                .log(RestAdapter.LogLevel.FULL)
                 .build();
-    }
 
-    @Ignore
-    @Test
-    public void testUpcomingMovies() {
-        List<MovieUpcoming> movies = client.getUpcomingMovies();
-        assertNotNull(movies);
-        assertFalse(movies.isEmpty());
-    }
-
-    @Ignore
-    @Test
-    public void testMovieList() {
-        Movies list = client.getMovies(null);
-        assertNotNull(list);
-        assertNotNull(list.count);
-        assertTrue(list.count > 0);
-        assertNotNull(list.movies);
-        assertFalse(list.movies.isEmpty());
-    }
-
-    @Ignore
-    @Test
-    public void testMovieDetails() {
-        MovieDetails details = client.getMovieDetails(1234);
-        assertNotNull(details);
-    }
-
-    @Ignore
-    @Test
-    public void testMovieComments() {
-        List<MovieComment> comments = client.getMovieComments(1234);
-        assertNotNull(comments);
-        assertFalse(comments.isEmpty());
-    }
-
-    @Ignore
-    @Test
-    public void testUserDetails() {
-        User details = client.getUserDetails(1234);
-        assertNotNull(details);
-    }
-
-    @Ignore
-    @Test
-    public void testRegister() {
-        YtsResponse response = client.register("USERNAME", "PASSWORD", "EMAIL");
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testRegisterConfirmation() {
-        YtsResponse response = client.registerConfirmation("CONFIRMATION CODE");
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testLogin() {
-        YtsLogin login = client.login("USER NAME", "PASSWORD");
-        assertNotNull(login);
-        assertNotNull(login.hash);
-        System.out.println(login.hash);
-    }
-
-    @Ignore
-    @Test
-    public void testForgotPassword() {
-        YtsResponse response = client.forgotPassword("EMAIL ADDRESS");
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testUserProfile() {
-        User user = client.getUserProfile("");
-        assertNotNull(user);
-    }
-
-    @Ignore
-    @Test
-    public void testResetPassword() {
-        YtsResponse response = client.resetPassword("THE EMAIL CODE", "NEW PASSWORD");
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testPostComment() {
-        YtsResponse response = client.postComment("USER HASH", "COMMENT TEXT", 1234, null);
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testMovieRequestList() {
-        MovieRequests list = client.getMovieRequests(MovieRequestPage.ACCEPTED, null);
-        assertNotNull(list);
-        assertNotNull(list.count);
-        assertTrue(list.count > 0);
-        assertNotNull(list.requests);
-        assertFalse(list.requests.isEmpty());
-    }
-
-    @Ignore
-    @Test
-    public void testMakeMovieRequest() {
-        YtsResponse response = client.requestMovie("USER HASH", "MOVIE NAME / IMDB LINK");
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testVoteRequest() {
-        YtsResponse response = client.voteRequest("USER HASH", 1234);
-        assertYtsResponse(response);
-    }
-
-    @Ignore
-    @Test
-    public void testEditProfile() {
-        Map<String, Object> optionals = new HashMap<String, Object>();
-        YtsResponse response = client.editProfile("USER HASH", optionals);
-        assertYtsResponse(response);
+        assertNotNull(client);
+        assertNotNull(client.bookmarks());
+        assertNotNull(client.comments());
+        assertNotNull(client.movies());
+        assertNotNull(client.requests());
+        assertNotNull(client.user());
     }
 
     /**
-     * Convenient method to assert {@link com.ytsclient.model.YtsResponse}
-     * object.
-     * <p/>
-     *
-     * @param response the response to be asserted
+     * Test to verify the available module instances when only YtsClient.Builder.withComments() is called.
+     * <br/>
      */
-    private static void assertYtsResponse(YtsResponse response) {
-        assertNotNull(response);
-        assertTrue(response.status != YtsStatus.FAIL);
-        assertNull(response.error);
+    @Test
+    public void onlyBookmarksModule() {
+        client = new YtsClient
+                .Builder()
+                .withBookmarks()
+                .build();
+
+        assertNotNull(client);
+        assertNotNull(client.bookmarks());
+        assertCommentModuleException(client);
+        assertMoviesModuleException(client);
+        assertRequestsModuleException(client);
+        assertUserModuleException(client);
+    }
+
+    /**
+     * Test to verify the available module instances when only YtsClient.Builder.withComments() is called.
+     * <br/>
+     */
+    @Test
+    public void onlyCommentModule() {
+        client = new YtsClient
+                .Builder()
+                .withComments()
+                .build();
+
+        assertNotNull(client);
+        assertNotNull(client.comments());
+        assertBookmarksModuleException(client);
+        assertMoviesModuleException(client);
+        assertRequestsModuleException(client);
+        assertUserModuleException(client);
+    }
+
+    /**
+     * Test to verify the available module instances when only YtsClient.Builder.withMovies() is called.
+     * <br/>
+     */
+    @Test
+    public void onlyMoviesModule() {
+        client = new YtsClient
+                .Builder()
+                .withMovies()
+                .build();
+
+        assertNotNull(client);
+        assertNotNull(client.movies());
+        assertBookmarksModuleException(client);
+        assertCommentModuleException(client);
+        assertRequestsModuleException(client);
+        assertUserModuleException(client);
+    }
+
+    /**
+     * Test to verify the available module instances when only YtsClient.Builder.withRequests() is called.
+     * <br/>
+     */
+    @Test
+    public void onlyRequestsModule() {
+        client = new YtsClient
+                .Builder()
+                .withRequests()
+                .build();
+
+        assertNotNull(client);
+        assertNotNull(client.requests());
+        assertBookmarksModuleException(client);
+        assertCommentModuleException(client);
+        assertMoviesModuleException(client);
+        assertUserModuleException(client);
+    }
+
+    /**
+     * Test to verify the available modules when only YtsClient.Builder.withUser() is called.
+     * <br/>
+     */
+    @Test
+    public void onlyUserModule() {
+        client = new YtsClient
+                .Builder()
+                .withUser()
+                .build();
+
+        assertNotNull(client);
+        assertNotNull(client.user());
+        assertBookmarksModuleException(client);
+        assertCommentModuleException(client);
+        assertMoviesModuleException(client);
+        assertRequestsModuleException(client);
+    }
+
+    /**
+     * Assert that the YtsClient instances throws an IllegalStateException when calling YtsClient.bookmarks() without having initialized it.
+     * <br/>
+     *
+     * @param client
+     */
+    private void assertBookmarksModuleException(YtsClient client) {
+        try {
+            client.bookmarks();
+            fail();
+        } catch (IllegalStateException e) {
+            assertTrue(e.getMessage().contains("Bookmarks module not loaded"));
+        }
+    }
+
+    /**
+     * Assert that the YtsClient instances throws an IllegalStateException when calling YtsClient.comments() without having initialized it.
+     * <br/>
+     *
+     * @param client
+     */
+    private void assertCommentModuleException(YtsClient client) {
+        try {
+            client.comments();
+            fail();
+        } catch (IllegalStateException e) {
+            assertTrue(e.getMessage().contains("Comments module not loaded"));
+        }
+    }
+
+    /**
+     * Assert that the YtsClient instances throws an IllegalStateException when calling YtsClient.movies() without having initialized it.
+     * <br/>
+     *
+     * @param client
+     */
+    private void assertMoviesModuleException(YtsClient client) {
+        try {
+            client.movies();
+        } catch (IllegalStateException e) {
+            assertTrue(e.getMessage().contains("Movies module not loaded"));
+        }
+    }
+
+    /**
+     * Assert that the YtsClient instances throws an IllegalStateException when calling YtsClient.requests() without having initialized it.
+     * <br/>
+     *
+     * @param client
+     */
+    private void assertRequestsModuleException(YtsClient client) {
+        try {
+            client.requests();
+        } catch (IllegalStateException e) {
+            assertTrue(e.getMessage().contains("Requests module not loaded"));
+        }
+    }
+
+    /**
+     * Assert that the YtsClient instances throws an IllegalStateException when calling YtsClient.user() without having initialized it.
+     * <br/>
+     *
+     * @param client
+     */
+    private void assertUserModuleException(YtsClient client) {
+        try {
+            client.user();
+        } catch (IllegalStateException e) {
+            assertTrue(e.getMessage().contains("User module not loaded"));
+        }
     }
 }
