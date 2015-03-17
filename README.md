@@ -6,41 +6,28 @@ Java library to consume the [YTS REST api][1].
 ---
 Get the code
 -- 
+
 ```sh
-git clone https://github.com/robertoestivill/yts-client.git yts-client
+git clone https://github.com/robertoestivill/ytsclient.git ytsclient
 ```
 
-Build with Maven 
+Maven
 --
-
-```sh
-cd yts-client
-mvn clean install
-```
-
-Once you have built it and install it to your local repository, you can reference it from your Maven project with the following dependency details
 
 ```xml
 <dependency>
-  <groupId>com.robertin</groupId>
-  <artifactId>yts-client</artifactId>
+  <groupId>com.robertoestivill.ytsclient</groupId>
+  <artifactId>ytsclient</artifactId>
   <version>${LATEST_VERSION}</version>
 </dependency>
 ```
 
-Build with Gradle
+Gradle
 --
-
-```sh
-cd yts-client
-./gradlew clean install
-```
-
-Once you have built it and install it to your local repository, you can reference it from your Gradle project with the following dependency details
 
 ```json
 dependencies {
-    compile 'com.robertin:yts-client:${LATEST_VERSION}'
+    compile 'com.robertoestivill.ytsclient:ytsclient:${LATEST_VERSION}'
 }
 ```
 
@@ -48,7 +35,7 @@ dependencies {
 ---
 Get started
 --
-The main class of the library is `com.ytsclient.YtsClient`. 
+The main class of the library is `ytsclient.YtsClient`.
 
 Get a configured instance of the `YtsClient` by using the `YtsClient.Builder()` class.
 
@@ -225,4 +212,4 @@ License
     limitations under the License.
 
 [1]:http://yts.re/api
-[git-repo-url]:http://github.com/robertoestivill/yts-client
+[git-repo-url]:http://github.com/robertoestivill/ytsclient
