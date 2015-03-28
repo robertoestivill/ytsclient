@@ -1,5 +1,6 @@
 package yts.module;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import yts.model.BookmarkPage;
@@ -12,6 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class BookmarkModuleTest extends ModuleTest {
 
+    @Ignore
     @Test
     public void testCreateDelete() {
         // Create bookmark
@@ -34,6 +36,7 @@ public class BookmarkModuleTest extends ModuleTest {
         assertEquals(YtsStatus.OK, responseDelete.status);
     }
 
+    @Ignore
     @Test
     public void testList() {
         YtsResponse<BookmarkPage> responseList = CLIENT.bookmarks()

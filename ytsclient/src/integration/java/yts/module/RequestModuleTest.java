@@ -1,18 +1,20 @@
 package yts.module;
 
-import yts.response.YtsResponse;
-import yts.response.YtsStatus;
-
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import yts.response.YtsResponse;
+import yts.response.YtsStatus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class RequestModuleTest extends ModuleTest {
 
+    @Ignore
     @Test
     public void testCreateSuccess() {
         Map<String, Object> options = new HashMap<String, Object>();

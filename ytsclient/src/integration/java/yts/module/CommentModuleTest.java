@@ -1,16 +1,18 @@
 package yts.module;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 import yts.model.CommentConfirmation;
 import yts.response.YtsResponse;
 import yts.response.YtsStatus;
-
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class CommentModuleTest extends ModuleTest {
 
+    @Ignore
     @Test
     public void testAll() {
         // Create comment

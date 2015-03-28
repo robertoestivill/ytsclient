@@ -88,7 +88,7 @@ public class YtsClient {
      */
     public static class Builder {
         private RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.NONE;
-        private String apiUrl = "http://yts.re/api/v2";
+        private String apiUrl = "http://yts.to/api/v2";
 
         private boolean isCustomModulesInitialization = false;
         private boolean[] isModuleEnabled = new boolean[5];

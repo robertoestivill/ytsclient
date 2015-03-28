@@ -9,8 +9,11 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Query;
 import retrofit.http.QueryMap;
+import retrofit.mime.TypedFile;
+import retrofit.mime.TypedString;
 import rx.Observable;
 import yts.model.Profile;
 import yts.model.User;
@@ -61,7 +64,6 @@ public interface UserModule {
     public Observable<YtsResponse<User>> detailsRx(
             @Query("user_id") Integer id,
             @QueryMap Map<String, Object> options);
-
 
     /**
      * Sync get user key.
@@ -160,7 +162,6 @@ public interface UserModule {
      * @return a YtsResponse<Profile>
      */
     @FormUrlEncoded
-    @Multipart
     @POST("/user_edit_settings.json")
     public YtsResponse<Profile> edit(
             @Field("application_key") String applicationKey,
@@ -180,7 +181,6 @@ public interface UserModule {
      * @param a   Callback<YtsResponse<Profile>>
      */
     @FormUrlEncoded
-    @Multipart
     @POST("/user_edit_settings.json")
     public void edit(
             @Field("application_key") String applicationKey,
@@ -201,12 +201,60 @@ public interface UserModule {
      * @return an Observable<YtsResponse<Profile>>
      */
     @FormUrlEncoded
-    @Multipart
     @POST("/user_edit_settings.json")
     public Observable<YtsResponse<Profile>> editRx(
             @Field("application_key") String applicationKey,
             @Field("user_key") String userKey,
             @FieldMap Map<String, Object> options);
+
+    /**
+     * Sync upload user picture.
+     * <br/>
+     *
+     * @param the application key
+     * @param the user key
+     * @param the user picture
+     * @return a YtsResponse<Profile>
+     */
+    @Multipart
+    @POST("/user_edit_settings.json")
+    public YtsResponse<Profile> picture(
+            @Part("application_key") TypedString applicationKey,
+            @Part("user_key") TypedString userKey,
+            @Part("avatar_image") TypedFile picture);
+
+    /**
+     * Async upload user picture.
+     * <br/>
+     *
+     * @param the application key
+     * @param the user key
+     * @param the user picture
+     * @param a   Callback<YtsResponse<Profile>>
+     */
+    @Multipart
+    @POST("/user_edit_settings.json")
+    public void picture(
+            @Part("application_key") TypedString applicationKey,
+            @Part("user_key") TypedString userKey,
+            @Part("avatar_image") TypedFile picture,
+            Callback<YtsResponse<Profile>> callback);
+
+    /**
+     * Reactive upload user picture.
+     * <br/>
+     *
+     * @param the application key
+     * @param the user key
+     * @param the user picture
+     * @return an Observable<YtsResponse<Profile>>
+     */
+    @Multipart
+    @POST("/user_edit_settings.json")
+    public Observable<YtsResponse<Profile>> pictureRx(
+            @Part("application_key") TypedString applicationKey,
+            @Part("user_key") TypedString userKey,
+            @Part("avatar_image") TypedFile picture);
 
     /**
      * Sync register user.

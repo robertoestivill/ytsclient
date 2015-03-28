@@ -163,6 +163,7 @@ The supported methods are:
   * `register()`
   * `forgotPassword()`
   * `resetPassword()`
+  * `picture()`
 
 
 ---
