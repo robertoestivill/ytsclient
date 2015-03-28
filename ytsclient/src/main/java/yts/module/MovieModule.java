@@ -218,7 +218,7 @@ public interface MovieModule {
      * @param the movie id
      * @return a YtsResponse<ParentalGuidePage>
      */
-    @GET("/movie_comments.json")
+    @GET("/movie_parental_guides.json")
     public YtsResponse<ParentalGuidePage> parentalGuides(
             @Query("movie_id") Integer movieId);
 
@@ -229,7 +229,7 @@ public interface MovieModule {
      * @param the movie id
      * @param a   Callback<YtsResponse<ParentalGuidePage>>
      */
-    @GET("/movie_comments.json")
+    @GET("/movie_parental_guides.json")
     public YtsResponse<ParentalGuidePage> parentalGuides(
             @Query("movie_id") Integer movieId,
             Callback<YtsResponse<ParentalGuidePage>> callback);
@@ -241,7 +241,7 @@ public interface MovieModule {
      * @param the movie id
      * @return an Observable<YtsResponse<ParentalGuidePage>>
      */
-    @GET("/movie_comments.json")
+    @GET("/movie_parental_guides.json")
     public Observable<YtsResponse<ParentalGuidePage>> parentalGuidesRx(
             @Query("movie_id") Integer movieId);
 

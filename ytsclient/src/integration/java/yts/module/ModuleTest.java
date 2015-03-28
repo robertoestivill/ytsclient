@@ -16,14 +16,13 @@
 
 package yts.module;
 
+import org.junit.BeforeClass;
+
+import retrofit.RestAdapter;
 import yts.YtsClient;
 import yts.model.UserKey;
 import yts.response.YtsResponse;
 import yts.response.YtsStatus;
-
-import org.junit.BeforeClass;
-
-import retrofit.RestAdapter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

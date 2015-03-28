@@ -39,13 +39,10 @@ public class UserModuleTest extends ModuleTest {
     @Ignore
     @Test
     public void testProfileAndDetails() {
-        // Retrieve user key
-        String userKey = getUserKey();
-
         // Retrieve user profile
         YtsResponse<Profile> responseProfile = CLIENT
                 .user()
-                .profile(userKey);
+                .profile(USER_KEY);
 
         assertNotNull(responseProfile);
         assertEquals(YtsStatus.OK, responseProfile.status);
@@ -120,14 +117,12 @@ public class UserModuleTest extends ModuleTest {
     @Ignore
     @Test
     public void testEdit() {
-        String userKey = getUserKey();
-
         Map<String, Object> options = new HashMap<String, Object>();
         options.put("about_text", "this is a test update");
 
         YtsResponse<Profile> response = CLIENT
                 .user()
-                .edit(APPLICATION_KEY, userKey, options);
+                .edit(APPLICATION_KEY, USER_KEY, options);
 
         assertNotNull(response);
         assertEquals(YtsStatus.OK, response.status);
@@ -141,7 +136,7 @@ public class UserModuleTest extends ModuleTest {
         File pictureFile = new File("ytsclient/src/integration/resources/logo.png");
         TypedFile picture = new TypedFile("application/octet-stream", pictureFile);
         TypedString appKey = new TypedString(APPLICATION_KEY);
-        TypedString userKey = new TypedString(getUserKey());
+        TypedString userKey = new TypedString(USER_KEY);
 
         YtsResponse<Profile> response = CLIENT
                 .user()
@@ -151,19 +146,6 @@ public class UserModuleTest extends ModuleTest {
         assertEquals(YtsStatus.OK, response.status);
         assertNotNull(response.data);
         assertNotNull(response.data.smallImageUrl);
-    }
-
-    private String getUserKey() {
-        // Retrieve user key
-        YtsResponse<UserKey> responseKey = CLIENT
-                .user()
-                .key(APPLICATION_KEY, USERNAME, PASSWORD);
-
-        assertNotNull(responseKey);
-        assertEquals(YtsStatus.OK, responseKey.status);
-        assertNotNull(responseKey.data);
-        assertNotNull(responseKey.data.userKey);
-        return responseKey.data.userKey;
     }
 
     private String newEmail(long now) {
