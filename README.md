@@ -25,7 +25,7 @@ Maven
 Gradle
 --
 
-```json
+```groovy
 dependencies {
     compile 'com.robertoestivill.ytsclient:ytsclient:${LATEST_VERSION}'
 }
@@ -49,7 +49,7 @@ You can also pass the `retrofit.RestAdapter.LogLevel` and/or a custom `url`
 ```java
 YtsClient client = new YtsClient.Builder()
             .log( LogLevel.FULL )
-            .url( "http://yts.re/api/v2" )
+            .url( "http://yts.to/api/v2" )
             .build();
 ```
 
@@ -92,6 +92,7 @@ YtsClient client = new YtsClient.Builder()
             .withUser()
             .withMovies()
             .build();
+            
 ...
 UserModule userModule = client.user();
 YtsResponse response = userModule.profile();
@@ -99,7 +100,7 @@ YtsResponse response = userModule.profile();
 ... // or
 YtsResponse response = client.user().profile();
 
-... 
+...
 client.comments(); // throws IllegalStateException
 ```
 
@@ -170,16 +171,19 @@ The supported methods are:
  Integration Tests
 --
 
-Integration tests have been separated from unit tests into a different source folder and task/goal.
+Integration tests have been separated from unit tests into a different source folder and task.
 
 You can find the integration tests in `src/integration/java` folder.
-Because the integration tests are executed against the real API, you will need to add the following constants to the `ModuleTest` class before executing the tests.
+
+All the integration tests have been `@Ignore`'d because they use the production API. 
+
+To run them, comment or delete the `@Ignore` annotation, and add your details the following constants to the `ModuleTest` class before executing the tests.
 * `APPLICATION_KEY`
 * `USERNAME` 
 * `PASSWORD`
 * `EMAIL` 
 
-Instead of harcoding the values, you can also set up the following environment variables in order to configure your settings without having to modify the source code.
+Also, instead of harcoding the values, you can also set up the following environment variables in order to configure your settings without having to modify the source code.
 * `YTS_APPLICATION_KEY`
 * `YTS_USERNAME`
 * `YTS_PASSWORD`
@@ -192,13 +196,11 @@ You can now run them by executing the following task.
 ```
 
 
-> TODO have Maven run the integration tests on a different goal. Only unit test are working with Maven.
-
 ---
 License
 ----
 
-    Copyright 2014 Roberto Estivill
+    Copyright 2015 Roberto Estivill
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -212,5 +214,5 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[1]:http://yts.re/api
+[1]:http://yts.to/api
 [git-repo-url]:http://github.com/robertoestivill/ytsclient
