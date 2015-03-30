@@ -38,19 +38,17 @@ public interface MovieModule {
 
     /**
      * Sync list movies.
-     * <br/>
      *
-     * @param the optional parameters
-     *            [Integer] "limit"           The limit of results per page that has been set. [1-50]
-     *            [Integer] "page"            Used to see the next page of movies.
-     *            [String]  "quality"         Used to filter by a given quality. [720p, 1080p, 3D]
-     *            [Integer] "minimum_rating"  Used to filter movie by a given minimum IMDb rating
-     *            [String]  "query_term"      Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code
-     *            [String]  "genre"           Used to filter by a given genre (See http://www.imdb.com/genre/ for full list)
-     *            [String]  "sort_by"         Sorts the results by choosen value. [itle, year, rating, peers, seeds, download_count, like_count, date_added]
-     *            [String]  "order_by"        Orders the results by either Ascending or Descending order. [desc,asc]
-     *            [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
-     * @return a YtsResponse<MoviePage>
+     * @param options [Integer] "limit"           The limit of results per page that has been set. [1-50]
+     *                [Integer] "page"            Used to see the next page of movies.
+     *                [String]  "quality"         Used to filter by a given quality. [720p, 1080p, 3D]
+     *                [Integer] "minimum_rating"  Used to filter movie by a given minimum IMDb rating
+     *                [String]  "query_term"      Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code
+     *                [String]  "genre"           Used to filter by a given genre (See http://www.imdb.com/genre/ for full list)
+     *                [String]  "sort_by"         Sorts the results by choosen value. [itle, year, rating, peers, seeds, download_count, like_count, date_added]
+     *                [String]  "order_by"        Orders the results by either Ascending or Descending order. [desc,asc]
+     *                [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
+     * @return ytsResponse
      */
     @GET("/list_movies.json")
     public YtsResponse<MoviePage> list(
@@ -58,19 +56,17 @@ public interface MovieModule {
 
     /**
      * Async list movies.
-     * <br/>
      *
-     * @param the optional parameters
-     *            [Integer] "limit"           The limit of results per page that has been set. [1-50]
-     *            [Integer] "page"            Used to see the next page of movies.
-     *            [String]  "quality"         Used to filter by a given quality. [720p, 1080p, 3D]
-     *            [Integer] "minimum_rating"  Used to filter movie by a given minimum IMDb rating
-     *            [String]  "query_term"      Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code
-     *            [String]  "genre"           Used to filter by a given genre (See http://www.imdb.com/genre/ for full list)
-     *            [String]  "sort_by"         Sorts the results by choosen value. [itle, year, rating, peers, seeds, download_count, like_count, date_added]
-     *            [String]  "order_by"        Orders the results by either Ascending or Descending order. [desc,asc]
-     *            [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
-     * @param a   Callback<YtsResponse<MoviePage>>
+     * @param options  [Integer] "limit"           The limit of results per page that has been set. [1-50]
+     *                 [Integer] "page"            Used to see the next page of movies.
+     *                 [String]  "quality"         Used to filter by a given quality. [720p, 1080p, 3D]
+     *                 [Integer] "minimum_rating"  Used to filter movie by a given minimum IMDb rating
+     *                 [String]  "query_term"      Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code
+     *                 [String]  "genre"           Used to filter by a given genre (See http://www.imdb.com/genre/ for full list)
+     *                 [String]  "sort_by"         Sorts the results by choosen value. [itle, year, rating, peers, seeds, download_count, like_count, date_added]
+     *                 [String]  "order_by"        Orders the results by either Ascending or Descending order. [desc,asc]
+     *                 [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
+     * @param callback
      */
     @GET("/list_movies.json")
     public void list(
@@ -79,19 +75,17 @@ public interface MovieModule {
 
     /**
      * Reactive list movies.
-     * <br/>
      *
-     * @param the optional parameters
-     *            [Integer] "limit"           The limit of results per page that has been set. [1-50]
-     *            [Integer] "page"            Used to see the next page of movies.
-     *            [String]  "quality"         Used to filter by a given quality. [720p, 1080p, 3D]
-     *            [Integer] "minimum_rating"  Used to filter movie by a given minimum IMDb rating
-     *            [String]  "query_term"      Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code
-     *            [String]  "genre"           Used to filter by a given genre (See http://www.imdb.com/genre/ for full list)
-     *            [String]  "sort_by"         Sorts the results by choosen value. [itle, year, rating, peers, seeds, download_count, like_count, date_added]
-     *            [String]  "order_by"        Orders the results by either Ascending or Descending order. [desc,asc]
-     *            [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
-     * @return an Observable<YtsResponse<MoviePage>>
+     * @param options [Integer] "limit"           The limit of results per page that has been set. [1-50]
+     *                [Integer] "page"            Used to see the next page of movies.
+     *                [String]  "quality"         Used to filter by a given quality. [720p, 1080p, 3D]
+     *                [Integer] "minimum_rating"  Used to filter movie by a given minimum IMDb rating
+     *                [String]  "query_term"      Used for movie search, matching on: Movie Title/IMDb Code, Actor Name/IMDb Code, Director Name/IMDb Code
+     *                [String]  "genre"           Used to filter by a given genre (See http://www.imdb.com/genre/ for full list)
+     *                [String]  "sort_by"         Sorts the results by choosen value. [itle, year, rating, peers, seeds, download_count, like_count, date_added]
+     *                [String]  "order_by"        Orders the results by either Ascending or Descending order. [desc,asc]
+     *                [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
+     * @return observable
      */
     @GET("/list_movies.json")
     public Observable<YtsResponse<MoviePage>> listRx(
@@ -99,13 +93,11 @@ public interface MovieModule {
 
     /**
      * Sync movie details.
-     * <br/>
      *
-     * @param the movie id
-     * @param the optional parameters
-     *            [Boolean] "with_images" When set the data returned will include the added image URLs
-     *            [Boolean] "with_cast"   When set the data returned will include the added information about the cast
-     * @return a YtsResponse<MovieDetail>
+     * @param movieId
+     * @param options [Boolean] "with_images" When set the data returned will include the added image URLs
+     *                [Boolean] "with_cast"   When set the data returned will include the added information about the cast
+     * @return ytsResponse
      */
     @GET("/movie_details.json")
     public YtsResponse<MovieDetail> details(
@@ -114,13 +106,11 @@ public interface MovieModule {
 
     /**
      * Aync movie details.
-     * <br/>
      *
-     * @param the movie id
-     * @param the optional parameters
-     *            [Boolean] "with_images" When set the data returned will include the added image URLs
-     *            [Boolean] "with_cast"   When set the data returned will include the added information about the cast
-     * @param a   Callback<YtsResponse<MovieDetail>>
+     * @param movieId
+     * @param options  [Boolean] "with_images" When set the data returned will include the added image URLs
+     *                 [Boolean] "with_cast"   When set the data returned will include the added information about the cast
+     * @param callback
      */
     @GET("/movie_details.json")
     public YtsResponse<MovieDetail> details(
@@ -130,13 +120,11 @@ public interface MovieModule {
 
     /**
      * Reactive movie details.
-     * <br/>
      *
-     * @param the movie id
-     * @param the optional parameters
-     *            [Boolean] "with_images" When set the data returned will include the added image URLs
-     *            [Boolean] "with_cast"   When set the data returned will include the added information about the cast
-     * @return an Observable<YtsResponse<MovieDetail>>
+     * @param movieId
+     * @param options [Boolean] "with_images" When set the data returned will include the added image URLs
+     *                [Boolean] "with_cast"   When set the data returned will include the added information about the cast
+     * @return observable
      */
     @GET("/movie_details.json")
     public Observable<YtsResponse<MovieDetail>> detailsRx(
@@ -145,10 +133,9 @@ public interface MovieModule {
 
     /**
      * Sync get suggestions.
-     * <br/>
      *
-     * @param the movie id
-     * @return a YtsResponse<SuggestionPage>
+     * @param movieId
+     * @return ytsResponse
      */
     @GET("/movie_suggestions.json")
     public YtsResponse<SuggestionPage> suggestions(
@@ -156,10 +143,9 @@ public interface MovieModule {
 
     /**
      * Aync get suggestions.
-     * <br/>
      *
-     * @param the movie id
-     * @param a   Callback<YtsResponse<SuggestionPage>>
+     * @param movieId
+     * @param callback
      */
     @GET("/movie_suggestions.json")
     public YtsResponse<SuggestionPage> suggestions(
@@ -168,10 +154,9 @@ public interface MovieModule {
 
     /**
      * Reactive get suggestions.
-     * <br/>
      *
-     * @param the movie id
-     * @return an Observable<YtsResponse<SuggestionPage>>
+     * @param movieId
+     * @return observable
      */
     @GET("/movie_suggestions.json")
     public Observable<YtsResponse<SuggestionPage>> suggestionsRx(
@@ -179,10 +164,9 @@ public interface MovieModule {
 
     /**
      * Sync get reviews.
-     * <br/>
      *
-     * @param the movie id
-     * @return a YtsResponse<ReviewPage>
+     * @param movieId
+     * @return ytsResponse
      */
     @GET("/movie_reviews.json")
     public YtsResponse<ReviewPage> reviews(
@@ -190,10 +174,9 @@ public interface MovieModule {
 
     /**
      * Async get reviews.
-     * <br/>
      *
-     * @param the movie id
-     * @param a   Callback<YtsResponse<ReviewPage>>
+     * @param movieId
+     * @param callback
      */
     @GET("/movie_reviews.json")
     public YtsResponse<ReviewPage> reviews(
@@ -202,10 +185,9 @@ public interface MovieModule {
 
     /**
      * Reactive get reviews.
-     * <br/>
      *
-     * @param the movie id
-     * @return an Observable<YtsResponse<ReviewPage>>
+     * @param movieId
+     * @return observable
      */
     @GET("/movie_reviews.json")
     public Observable<YtsResponse<ReviewPage>> reviewsRx(
@@ -213,10 +195,9 @@ public interface MovieModule {
 
     /**
      * Sync get parental guides.
-     * <br/>
      *
-     * @param the movie id
-     * @return a YtsResponse<ParentalGuidePage>
+     * @param movieId
+     * @return ytsResponse
      */
     @GET("/movie_parental_guides.json")
     public YtsResponse<ParentalGuidePage> parentalGuides(
@@ -224,10 +205,9 @@ public interface MovieModule {
 
     /**
      * Async get parental guides.
-     * <br/>
      *
-     * @param the movie id
-     * @param a   Callback<YtsResponse<ParentalGuidePage>>
+     * @param movieId
+     * @param callback
      */
     @GET("/movie_parental_guides.json")
     public YtsResponse<ParentalGuidePage> parentalGuides(
@@ -236,10 +216,9 @@ public interface MovieModule {
 
     /**
      * Reactive get parental guides.
-     * <br/>
      *
-     * @param the movie id
-     * @return an Observable<YtsResponse<ParentalGuidePage>>
+     * @param movieId
+     * @return observable
      */
     @GET("/movie_parental_guides.json")
     public Observable<YtsResponse<ParentalGuidePage>> parentalGuidesRx(
@@ -247,18 +226,16 @@ public interface MovieModule {
 
     /**
      * Sync get upcoming movies.
-     * <br/>
      *
-     * @return a YtsResponse<UpcomingMoviePage>
+     * @return ytsResponse
      */
     @GET("/list_upcoming.json")
     public YtsResponse<UpcomingMoviePage> upcoming();
 
     /**
      * Async get upcoming movies.
-     * <br/>
      *
-     * @param a Callback<YtsResponse<UpcomingMoviePage>>
+     * @param callback
      */
     @GET("/list_upcoming.json")
     public YtsResponse<UpcomingMoviePage> upcoming(
@@ -266,21 +243,19 @@ public interface MovieModule {
 
     /**
      * Reactive get upcoming movies.
-     * <br/>
      *
-     * @return an Observable<YtsResponse<UpcomingMoviePage>>
+     * @return observable
      */
     @GET("/list_upcoming.json")
     public Observable<YtsResponse<UpcomingMoviePage>> upcomingRx();
 
     /**
      * Sync like movie.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/like_movie.json")
@@ -291,12 +266,11 @@ public interface MovieModule {
 
     /**
      * Async like movie.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/like_movie.json")
@@ -308,12 +282,11 @@ public interface MovieModule {
 
     /**
      * Reactive like movie.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/like_movie.json")

@@ -40,55 +40,48 @@ public interface UserModule {
 
     /**
      * Sync get user details.
-     * <br/>
      *
-     * @param the user id
-     * @param the optional parameters
-     *            [Boolean] "with_recently_downloaded" If set it will add the most recent downloads by the specified user
-     * @return a YtsResponse<User>
+     * @param userId
+     * @param options [Boolean] "with_recently_downloaded" If set it will add the most recent downloads by the specified user
+     * @return ytsResponse
      */
     @GET("/user_details.json")
     public YtsResponse<User> details(
-            @Query("user_id") Integer id,
+            @Query("user_id") Integer userId,
             @QueryMap Map<String, Object> options);
 
     /**
      * Async get user details.
-     * <br/>
      *
-     * @param the user id
-     * @param the optional parameters
-     *            [Boolean] "with_recently_downloaded" If set it will add the most recent downloads by the specified user
-     * @param a   Callback<YtsResponse<User>>
+     * @param userId
+     * @param options  [Boolean] "with_recently_downloaded" If set it will add the most recent downloads by the specified user
+     * @param callback
      */
     @GET("/user_details.json")
     public void details(
-            @Query("user_id") Integer id,
+            @Query("user_id") Integer userId,
             @QueryMap Map<String, Object> options,
             Callback<YtsResponse<User>> callback);
 
     /**
      * Reactive get user details.
-     * <br/>
      *
-     * @param the user id
-     * @param the optional parameters
-     *            [Boolean] "with_recently_downloaded" If set it will add the most recent downloads by the specified user
-     * @return an Observable<YtsResponse<User>>
+     * @param userId
+     * @param options [Boolean] "with_recently_downloaded" If set it will add the most recent downloads by the specified user
+     * @return observable
      */
     @GET("/user_details.json")
     public Observable<YtsResponse<User>> detailsRx(
-            @Query("user_id") Integer id,
+            @Query("user_id") Integer userId,
             @QueryMap Map<String, Object> options);
 
     /**
      * Sync get user key.
-     * <br/>
      *
-     * @param the application key
-     * @param the user name
-     * @param the user password
-     * @return a YtsResponse<UserKey>
+     * @param applicationKey
+     * @param username
+     * @param password
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/user_get_key.json")
@@ -99,12 +92,11 @@ public interface UserModule {
 
     /**
      * Async get user key.
-     * <br/>
      *
-     * @param the application key
-     * @param the user name
-     * @param the user password
-     * @param a   Callback<YtsResponse<UserKey>>
+     * @param applicationKey
+     * @param username
+     * @param password
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/user_get_key.json")
@@ -116,12 +108,11 @@ public interface UserModule {
 
     /**
      * Reactive get user key.
-     * <br/>
      *
-     * @param the application key
-     * @param the user name
-     * @param the user password
-     * @return an Observable<YtsResponse<UserKey>>
+     * @param applicationKey
+     * @param username
+     * @param password
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/user_get_key.json")
@@ -133,10 +124,9 @@ public interface UserModule {
 
     /**
      * Sync get user profile.
-     * <br/>
      *
-     * @param the user key
-     * @return a YtsResponse<Profile>
+     * @param userKey
+     * @return ytsResponse
      */
     @GET("/user_profile.json")
     public YtsResponse<Profile> profile(
@@ -144,10 +134,9 @@ public interface UserModule {
 
     /**
      * Async get user profile.
-     * <br/>
      *
-     * @param the user key
-     * @param a   Callback<YtsResponse<Profile>>
+     * @param userKey
+     * @param callback
      */
     @GET("/user_profile.json")
     public void profile(
@@ -156,10 +145,9 @@ public interface UserModule {
 
     /**
      * Reactive get user profile.
-     * <br/>
      *
-     * @param the user key
-     * @return an Observable<YtsResponse<Profile>>
+     * @param userKey
+     * @return observable
      */
     @GET("/user_profile.json")
     public Observable<YtsResponse<Profile>> profileRx(
@@ -167,15 +155,12 @@ public interface UserModule {
 
     /**
      * Sync edit user settings.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the optional parameters
-     *            [String] "new_password" The new desired password
-     *            [String] "about_text"   Text describing the user in a short paragraph
-     *            [Image]  "avatar_image" Upload (using multi-part) a new avatar image
-     * @return a YtsResponse<Profile>
+     * @param applicationKey
+     * @param userKey
+     * @param options        [String] "new_password" The new desired password
+     *                       [String] "about_text"   Text describing the user in a short paragraph
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/user_edit_settings.json")
@@ -186,15 +171,12 @@ public interface UserModule {
 
     /**
      * Async edit user settings.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the optional parameters
-     *            [String] "new_password" The new desired password
-     *            [String] "about_text"   Text describing the user in a short paragraph
-     *            [Image]  "avatar_image" Upload (using multi-part) a new avatar image
-     * @param a   Callback<YtsResponse<Profile>>
+     * @param applicationKey
+     * @param userKey
+     * @param options        [String] "new_password" The new desired password
+     *                       [String] "about_text"   Text describing the user in a short paragraph
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/user_edit_settings.json")
@@ -206,15 +188,12 @@ public interface UserModule {
 
     /**
      * Reactive edit user settings.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the optional parameters
-     *            [String] "new_password" The new desired password
-     *            [String] "about_text"   Text describing the user in a short paragraph
-     *            [Image]  "avatar_image" Upload (using multi-part) a new avatar image
-     * @return an Observable<YtsResponse<Profile>>
+     * @param applicationKey
+     * @param userKey
+     * @param options        [String] "new_password" The new desired password
+     *                       [String] "about_text"   Text describing the user in a short paragraph
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/user_edit_settings.json")
@@ -225,12 +204,11 @@ public interface UserModule {
 
     /**
      * Sync upload user picture.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the user picture
-     * @return a YtsResponse<Profile>
+     * @param applicationKey
+     * @param userKey
+     * @param picture
+     * @return ytsResponse
      */
     @Multipart
     @POST("/user_edit_settings.json")
@@ -241,12 +219,11 @@ public interface UserModule {
 
     /**
      * Async upload user picture.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the user picture
-     * @param a   Callback<YtsResponse<Profile>>
+     * @param applicationKey
+     * @param userKey
+     * @param picture
+     * @param callback
      */
     @Multipart
     @POST("/user_edit_settings.json")
@@ -258,12 +235,11 @@ public interface UserModule {
 
     /**
      * Reactive upload user picture.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the user picture
-     * @return an Observable<YtsResponse<Profile>>
+     * @param applicationKey
+     * @param userKey
+     * @param picture
+     * @return observable
      */
     @Multipart
     @POST("/user_edit_settings.json")
@@ -274,13 +250,12 @@ public interface UserModule {
 
     /**
      * Sync register user.
-     * <br/>
      *
-     * @param the application key
-     * @param the user name
-     * @param the user password
-     * @param the user email
-     * @return a YtsResponse<UserKey>
+     * @param applicationKey
+     * @param username
+     * @param password
+     * @param email
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/user_register.json")
@@ -292,13 +267,12 @@ public interface UserModule {
 
     /**
      * Async register user.
-     * <br/>
      *
-     * @param the application key
-     * @param the user name
-     * @param the user password
-     * @param the user email
-     * @param a   Callback<YtsResponse<UserKey>>
+     * @param applicationKey
+     * @param username
+     * @param password
+     * @param email
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/user_register.json")
@@ -311,13 +285,12 @@ public interface UserModule {
 
     /**
      * Reactive register user.
-     * <br/>
      *
-     * @param the application key
-     * @param the user name
-     * @param the user password
-     * @param the user email
-     * @return an Observable<YtsResponse<UserKey>>
+     * @param applicationKey
+     * @param username
+     * @param password
+     * @param email
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/user_register.json")
@@ -329,11 +302,10 @@ public interface UserModule {
 
     /**
      * Sync forgot password.
-     * <br/>
      *
-     * @param the application key
-     * @param the user email
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param email
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/user_forgot_password.json")
@@ -343,11 +315,10 @@ public interface UserModule {
 
     /**
      * Async forgot password.
-     * <br/>
      *
-     * @param the application key
-     * @param the user email
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param email
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/user_forgot_password.json")
@@ -358,11 +329,10 @@ public interface UserModule {
 
     /**
      * Reactive forgot password.
-     * <br/>
      *
-     * @param the application key
-     * @param the user email
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param email
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/user_forgot_password.json")
@@ -372,12 +342,11 @@ public interface UserModule {
 
     /**
      * Sync reset password.
-     * <br/>
      *
-     * @param the application key
-     * @param the reset code
-     * @param the user new password
-     * @return a YtsResponse<UserKey>
+     * @param applicationKey
+     * @param resetCode
+     * @param newPassword
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/user_reset_password.json")
@@ -388,12 +357,11 @@ public interface UserModule {
 
     /**
      * Async reset password.
-     * <br/>
      *
-     * @param the application key
-     * @param the reset code
-     * @param the user new password
-     * @param a   Callback<YtsResponse<UserKey>>
+     * @param applicationKey
+     * @param resetCode
+     * @param newPassword
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/user_reset_password.json")
@@ -405,12 +373,11 @@ public interface UserModule {
 
     /**
      * Reactive reset password.
-     * <br/>
      *
-     * @param the application key
-     * @param the reset code
-     * @param the user new password
-     * @return an Observable<YtsResponse<UserKey>>
+     * @param applicationKey
+     * @param resetCode
+     * @param newPassword
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/user_reset_password.json")

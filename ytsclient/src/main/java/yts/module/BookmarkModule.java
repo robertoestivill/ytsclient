@@ -33,12 +33,10 @@ public interface BookmarkModule {
 
     /**
      * Sync list bookmarks.
-     * <br/>
      *
-     * @param the user key
-     * @param the optional parameters
-     *            [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
-     * @return a YtsResponse<BookmarkPage>
+     * @param userKey
+     * @param options [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
+     * @return ytsResponse
      */
     @GET("/get_movie_bookmarks.json")
     public YtsResponse<BookmarkPage> list(
@@ -47,12 +45,10 @@ public interface BookmarkModule {
 
     /**
      * Async list bookmarks.
-     * <br/>
      *
-     * @param the user key
-     * @param the optional parameters
-     *            [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
-     * @param a   Callback<YtsResponse<BookmarkPage>>
+     * @param userKey
+     * @param options  [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
+     * @param callback
      */
     @GET("/get_movie_bookmarks.json")
     public void list(
@@ -62,12 +58,10 @@ public interface BookmarkModule {
 
     /**
      * Reactive list bookmarks.
-     * <br/>
      *
-     * @param the user key
-     * @param the optional parameters
-     *            [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
-     * @return an Observable<YtsResponse<BookmarkPage>>
+     * @param userKey
+     * @param options [Boolean] "with_rt_ratings" Returns the list with the Rotten Tomatoes rating included
+     * @return observable
      */
     @GET("/get_movie_bookmarks.json")
     public Observable<YtsResponse<BookmarkPage>> listRx(
@@ -76,12 +70,11 @@ public interface BookmarkModule {
 
     /**
      * Sync create bookmark.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/add_movie_bookmark.json")
@@ -92,12 +85,11 @@ public interface BookmarkModule {
 
     /**
      * Async create bookmark.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/add_movie_bookmark.json")
@@ -109,12 +101,11 @@ public interface BookmarkModule {
 
     /**
      * Reactive create bookmark.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/add_movie_bookmark.json")
@@ -125,12 +116,11 @@ public interface BookmarkModule {
 
     /**
      * Sync delete bookmark.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/delete_movie_bookmark.json")
@@ -141,12 +131,11 @@ public interface BookmarkModule {
 
     /**
      * Async delete bookmark.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/delete_movie_bookmark.json")
@@ -158,12 +147,11 @@ public interface BookmarkModule {
 
     /**
      * Reactive delete bookmark.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/delete_movie_bookmark.json")

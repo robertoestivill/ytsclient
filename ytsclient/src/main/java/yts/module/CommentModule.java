@@ -31,10 +31,9 @@ public interface CommentModule {
 
     /**
      * Sync list comments.
-     * <br/>
      *
-     * @param the movie id
-     * @return a YtsResponse<CommentPage>
+     * @param movieId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @GET("/movie_comments.json")
@@ -43,10 +42,9 @@ public interface CommentModule {
 
     /**
      * Async list comments.
-     * <br/>
      *
-     * @param the movie id
-     * @param a   Callback<YtsResponse<CommentPage>>
+     * @param movieId
+     * @param callback
      */
     @FormUrlEncoded
     @GET("/movie_comments.json")
@@ -56,10 +54,9 @@ public interface CommentModule {
 
     /**
      * Reactive list comments.
-     * <br/>
      *
-     * @param the movie id
-     * @return an Observable<<YtsResponse<CommentPage>>
+     * @param movieId
+     * @return observable
      */
     @FormUrlEncoded
     @GET("/movie_comments.json")
@@ -68,13 +65,12 @@ public interface CommentModule {
 
     /**
      * Sync create comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @param the comment text
-     * @return a YtsResponse<CommentConfirmation>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @param commentText
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/make_comment.json")
@@ -86,13 +82,12 @@ public interface CommentModule {
 
     /**
      * Async create comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @param the comment text
-     * @param a   Callback<YtsResponse<CommentConfirmation>>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @param commentText
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/make_comment.json")
@@ -105,13 +100,12 @@ public interface CommentModule {
 
     /**
      * Reactive create comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie id
-     * @param the comment text
-     * @return a Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieId
+     * @param commentText
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/make_comment.json")
@@ -123,12 +117,11 @@ public interface CommentModule {
 
     /**
      * Sync delete comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/delete_comment.json")
@@ -139,12 +132,11 @@ public interface CommentModule {
 
     /**
      * Async delete comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/delete_comment.json")
@@ -156,12 +148,11 @@ public interface CommentModule {
 
     /**
      * Reactive delete comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/delete_comment.json")
@@ -172,12 +163,11 @@ public interface CommentModule {
 
     /**
      * Sync like comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/like_comment.json")
@@ -188,12 +178,11 @@ public interface CommentModule {
 
     /**
      * Async like comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/like_comment.json")
@@ -205,12 +194,11 @@ public interface CommentModule {
 
     /**
      * Reactive like comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/like_comment.json")
@@ -221,12 +209,11 @@ public interface CommentModule {
 
     /**
      * Sync report comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/report_comment.json")
@@ -237,12 +224,11 @@ public interface CommentModule {
 
     /**
      * Async report comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/report_comment.json")
@@ -254,12 +240,11 @@ public interface CommentModule {
 
     /**
      * Reactive report comment.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the comment id
-     * @return an Observable<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param commentId
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/report_comment.json")

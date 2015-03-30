@@ -29,7 +29,6 @@ import yts.module.UserModule;
 
 /**
  * Interface definition of the Yts API.
- * <p/>
  * This interface defines each of the endpoints available on the Yts API.
  *
  * @author robertoestivill@gmail.com
@@ -84,7 +83,7 @@ public class YtsClient {
     }
 
     /**
-     * Builder class. <br/>
+     * Builder class.
      */
     public static class Builder {
         private RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.NONE;

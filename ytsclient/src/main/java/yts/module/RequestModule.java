@@ -30,14 +30,12 @@ public interface RequestModule {
 
     /**
      * Sync create request method.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie title
-     * @param the optional parameters
-     *            [String] "request_message" optional information about the request
-     * @return a YtsResponse
+     * @param applicationKey
+     * @param userKey
+     * @param movieTitle
+     * @param options        [String] "request_message" optional information about the request
+     * @return ytsResponse
      */
     @FormUrlEncoded
     @POST("/make_request.json")
@@ -49,14 +47,12 @@ public interface RequestModule {
 
     /**
      * Async create request method.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie title
-     * @param the optional parameters
-     *            [String] "request_message" optional information about the request
-     * @param a   Callback<YtsResponse>
+     * @param applicationKey
+     * @param userKey
+     * @param movieTitle
+     * @param options        [String] "request_message" optional information about the request
+     * @param callback
      */
     @FormUrlEncoded
     @POST("/make_request.json")
@@ -69,14 +65,12 @@ public interface RequestModule {
 
     /**
      * Rx create request method.
-     * <br/>
      *
-     * @param the application key
-     * @param the user key
-     * @param the movie title
-     * @param the optional parameters
-     *            [String] "request_message" optional information about the request
-     * @return a Observable<YtsResponse<RequestConfirmation>>
+     * @param applicationKey
+     * @param userKey
+     * @param movieTitle
+     * @param options        [String] "request_message" optional information about the request
+     * @return observable
      */
     @FormUrlEncoded
     @POST("/make_request.json")
