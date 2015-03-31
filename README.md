@@ -18,7 +18,7 @@ Maven
 <dependency>
   <groupId>com.robertoestivill.ytsclient</groupId>
   <artifactId>ytsclient</artifactId>
-  <version>${LATEST_VERSION}</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
@@ -27,7 +27,7 @@ Gradle
 
 ```groovy
 dependencies {
-    compile 'com.robertoestivill.ytsclient:ytsclient:${LATEST_VERSION}'
+    compile 'com.robertoestivill.ytsclient:ytsclient:0.2.0'
 }
 ```
 
