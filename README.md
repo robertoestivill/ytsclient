@@ -1,7 +1,12 @@
 YTS Api Client
 =========
 
-Java library to consume the [YTS REST api][1].
+Java library to consume the [YTS REST api][1].  
+
+![Travis build status](https://travis-ci.org/robertoestivill/ytsclient.svg "Travis build status")
+
+
+
 
 ---
 Get the code
