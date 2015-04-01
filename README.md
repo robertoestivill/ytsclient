@@ -4,7 +4,7 @@ YTS Api Client
 Java library to consume the [YTS REST api][1].  
 
 ![Travis build status](https://travis-ci.org/robertoestivill/ytsclient.svg "Travis build status")
-
+![Maven central](https://maven-badges.herokuapp.com/maven-central/com.robertoestivill.ytsclient/ytsclient/badge.svg "Maven central")
 
 
 
