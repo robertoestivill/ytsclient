@@ -19,6 +19,7 @@ package yts;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 import yts.module.BookmarkModule;
@@ -26,6 +27,7 @@ import yts.module.CommentModule;
 import yts.module.MovieModule;
 import yts.module.RequestModule;
 import yts.module.UserModule;
+import yts.request.interceptor.UserAgentInterceptor;
 
 /**
  * Interface definition of the Yts API.
@@ -88,6 +90,7 @@ public class YtsClient {
     public static class Builder {
         private RestAdapter.LogLevel logLevel = RestAdapter.LogLevel.NONE;
         private String apiUrl = "http://yts.to/api/v2";
+        private RequestInterceptor requestInterceptor = new UserAgentInterceptor();
 
         private boolean isCustomModulesInitialization = false;
         private boolean[] isModuleEnabled = new boolean[5];
@@ -105,6 +108,14 @@ public class YtsClient {
                 throw new IllegalStateException("Url can not be null");
             }
             apiUrl = url;
+            return this;
+        }
+
+        public Builder withInterceptor(RequestInterceptor interceptor) {
+            if (interceptor == null) {
+                throw new IllegalArgumentException("Interceptor can not be null");
+            }
+            requestInterceptor = interceptor;
             return this;
         }
 
@@ -146,6 +157,7 @@ public class YtsClient {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setEndpoint(apiUrl)
                     .setLogLevel(logLevel)
+                    .setRequestInterceptor(requestInterceptor)
                     .setConverter(new GsonConverter(gson))
                     .build();
 
